@@ -9,6 +9,11 @@ import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlin
 export default function BottomMenu() {
   const [value, setValue] = React.useState(0);
 
+  const getBookmarks = (e) => {
+    e.preventDefault();
+    console.log('clicked');
+  };
+
   return (
     <Box sx={{ width: 500 }}>
       <BottomNavigation
@@ -19,7 +24,7 @@ export default function BottomMenu() {
         }}
       >
         <BottomNavigationAction label="Search" icon={<SearchRoundedIcon />} />
-        <BottomNavigationAction label="Bookmarks" icon={<BookmarksIcon />} />
+        <BottomNavigationAction label="Bookmarks" icon={<BookmarksIcon />} onClick={getBookmarks} />
         <BottomNavigationAction label="Visited" icon={<CheckCircleOutlineRoundedIcon />} />
       </BottomNavigation>
     </Box>

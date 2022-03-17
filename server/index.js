@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const { API_KEY } = require('../config');
 const db = require('../db');
+const controller = require('../db/controllers/bkfc');
 
 const app = express();
 
@@ -30,6 +31,17 @@ app.get('/mvp/search', (req, res) => {
 
 app.get('/mvp/bookmarks', (req, res) => {
 
+});
+
+app.post('/mvp/bookmarks', (req, res) => {
+  const filter = { key: req.body.key };
+  controller.addToBookmark(filter, req.body, (err) => {
+    if (err) {
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(201);
+    }
+  });
 });
 
 app.get('/mvp/visited', (req, res) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'underscore';
+import axios from 'axios';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -10,6 +11,9 @@ import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
+import IconButton from '@mui/material/IconButton';
+import BookmarksIcon from '@mui/icons-material/Bookmarks';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 export default function PlacesCarousel({ places }) {
   // sort places by the product of rating and review_count in descending order
@@ -21,7 +25,7 @@ export default function PlacesCarousel({ places }) {
     if (num >= 2000) {
       return 'Must Go';
     }
-    return 'Recomand';
+    return 'Recommend';
   };
   sort.map((item) => {
     images.push({
@@ -49,6 +53,12 @@ export default function PlacesCarousel({ places }) {
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
+
+  const bookmark = (e) => {
+    e.preventDefault();
+    axios.post('/mvp/bookmarks', images[activeStep]);
+  };
+
   return (
     <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
       <Paper
@@ -67,6 +77,8 @@ export default function PlacesCarousel({ places }) {
           {' '}
           {images[activeStep].rating}
         </Typography>
+        <IconButton type="submit" onClick={bookmark}><BookmarksIcon /></IconButton>
+        <IconButton fontSize="small"><AddCircleRoundedIcon /></IconButton>
       </Paper>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
