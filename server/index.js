@@ -30,7 +30,13 @@ app.get('/mvp/search', (req, res) => {
 });
 
 app.get('/mvp/bookmarks', (req, res) => {
-
+  controller.getBookmarks((err, results) => {
+    if (err) {
+      res.sendStatus(400);
+    } else {
+      res.status(200).send(results);
+    }
+  });
 });
 
 app.post('/mvp/bookmarks', (req, res) => {
@@ -42,10 +48,6 @@ app.post('/mvp/bookmarks', (req, res) => {
       res.sendStatus(201);
     }
   });
-});
-
-app.get('/mvp/visited', (req, res) => {
-
 });
 
 app.listen(PORT, () => {

@@ -7,7 +7,6 @@ const bkfcSchema = mongoose.Schema({
   img_url: String,
   place_url: String,
   bookmark: String,
-  visited: String,
 });
 
 const Bkfc = mongoose.model('Bkfc', bkfcSchema);

@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
-import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 
-export default function BottomMenu() {
-  const [value, setValue] = React.useState(0);
+export default function BottomMenu({ handleClick }) {
+  const [value, setValue] = useState(0);
 
   const getBookmarks = (e) => {
     e.preventDefault();
-    console.log('clicked');
+    handleClick('bookmarks');
+  };
+
+  const getMap = (e) => {
+    e.preventDefault();
+    handleClick('map');
   };
 
   return (
@@ -23,10 +28,13 @@ export default function BottomMenu() {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Search" icon={<SearchRoundedIcon />} />
+        <BottomNavigationAction label="Search" icon={<SearchRoundedIcon />} onClick={getMap} />
         <BottomNavigationAction label="Bookmarks" icon={<BookmarksIcon />} onClick={getBookmarks} />
-        <BottomNavigationAction label="Visited" icon={<CheckCircleOutlineRoundedIcon />} />
       </BottomNavigation>
     </Box>
   );
 }
+
+BottomMenu.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+};
