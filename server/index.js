@@ -28,7 +28,13 @@ app.get('/mvp/search', (req, res) => {
     });
 });
 
-// app.post('//')
+app.get('/mvp/bookmarks', (req, res) => {
+
+});
+
+app.get('/mvp/visited', (req, res) => {
+
+});
 
 app.listen(PORT, () => {
   console.log(`Server is listening on ${PORT} :)`);
