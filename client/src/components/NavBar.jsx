@@ -6,7 +6,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 
-export default function BottomMenu({ handleClick }) {
+export default function NavBar({ handleClick }) {
   const [value, setValue] = useState(0);
 
   const getBookmarks = (e) => {
@@ -20,7 +20,7 @@ export default function BottomMenu({ handleClick }) {
   };
 
   return (
-    <Box sx={{ width: 500 }}>
+    <Box id="navbar">
       <BottomNavigation
         showLabels
         value={value}
@@ -28,13 +28,13 @@ export default function BottomMenu({ handleClick }) {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Search" icon={<SearchRoundedIcon />} onClick={getMap} />
-        <BottomNavigationAction label="Bookmarks" icon={<BookmarksIcon />} onClick={getBookmarks} />
+        <BottomNavigationAction id="search-icon" label="Search" icon={<SearchRoundedIcon fontSize="medium" />} onClick={getMap} />
+        <BottomNavigationAction id="bookmark-icon" label="Bookmarks" icon={<BookmarksIcon fontSize="medium" />} onClick={getBookmarks} />
       </BottomNavigation>
     </Box>
   );
 }
 
-BottomMenu.propTypes = {
+NavBar.propTypes = {
   handleClick: PropTypes.func.isRequired,
 };

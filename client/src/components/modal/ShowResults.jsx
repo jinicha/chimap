@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
-import styles from './ShowResults.module.css';
 import Search from './Search';
 import PlacesCarousel from './PlacesCarousel';
 
@@ -34,20 +33,20 @@ export default function ShowResults({ closeModal, stateName }) {
   };
 
   return (
-    <div className={styles.modal}>
-      <div className={styles.modal_inner}>
+    <div className="modal">
+      <div className="modal-inner">
         <button
-          className={styles.close_btn}
+          className="close-btn"
           type="submit"
           onClick={handleClick}
         >
           <CloseIcon fontSize="inherit" />
         </button>
-        <h4 className={styles.modal_title}>
+        <div className="modal-title">
           Find the best Korean Fried Chicken in
           {' '}
           {stateName}
-        </h4>
+        </div>
         <Search handleSubmit={handleSubmit} />
         {places.length === 0 ? <div /> : <PlacesCarousel places={places} />}
       </div>

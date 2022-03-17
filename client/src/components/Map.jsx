@@ -9,7 +9,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: '100%',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -27,13 +27,13 @@ export default function Map() {
   const closeModal = () => setClick(false);
 
   return (
-    <div>
+    <div className="map">
       <USAMap onClick={openModal} />
       <Modal
         open={click}
         onClose={closeModal}
       >
-        <Box sx={style}>
+        <Box id="modal-container" sx={style}>
           <ShowResults closeModal={closeModal} stateName={stateName} />
         </Box>
       </Modal>

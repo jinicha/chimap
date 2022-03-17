@@ -22,8 +22,8 @@ export default function Bookmarks() {
   }, []);
 
   return (
-    <div>
-      {bookmarks.length === 0 ? 'Add right now!' : <Deck cards={cards} />}
+    <div className="bookmark">
+      {bookmarks.length === 0 ? '' : <Deck cards={cards} />}
     </div>
   );
 }

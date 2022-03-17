@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function Title() {
   return (
-    <div>
-      <h1>Best Korean Fried Chicken</h1>
+    <div className="title">
+      Best Korean Fried Chicken
     </div>
   );
 }

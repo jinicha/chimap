@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './ShowResults.module.css';
 
 export default function Search({ handleSubmit }) {
   const [location, setLocation] = useState('');
@@ -16,14 +15,16 @@ export default function Search({ handleSubmit }) {
   };
 
   return (
-    <form className={styles.search} onSubmit={search}>
+    <form className="search" onSubmit={search}>
       <input
+        className="search-field"
         type="text"
         placeholder="Enter City, State, or Zip"
         value={location}
         onChange={handleInput}
       />
       <input
+        className="search-btn"
         type="submit"
         value="Search"
       />

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSprings, animated, to as interpolate } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
-import styles from './Deck.module.css';
 
 const to = (i) => ({
   x: 0,
@@ -55,11 +54,11 @@ export default function Deck({ cards }) {
   });
 
   return (
-    <div className={styles.container}>
+    <div className="deck-container">
       {props.map(({
         x, y, rot, scale,
       }, i) => (
-        <animated.div className={styles.deck} style={{ x, y }}>
+        <animated.div className="deck" style={{ x, y }}>
           <animated.div
             {...bind(i)}
             style={{

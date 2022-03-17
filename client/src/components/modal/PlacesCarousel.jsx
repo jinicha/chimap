@@ -59,8 +59,9 @@ export default function PlacesCarousel({ places }) {
   };
 
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+    <Box id="modal-places-container" sx={{ maxWidth: 400, flexGrow: 1 }}>
       <Paper
+        id="modal-places-title"
         square
         elevation={0}
         sx={{
@@ -90,9 +91,9 @@ export default function PlacesCarousel({ places }) {
               <Box
                 component="img"
                 sx={{
-                  height: 360,
+                  height: 400,
                   display: 'block',
-                  maxWidth: 400,
+                  // maxWidth: 400,
                   overflow: 'hidden',
                   width: '100%',
                 }}

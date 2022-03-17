@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Title from './Title';
 import Map from './Map';
-import BottomMenu from './BottomMenu';
+import NavBar from './NavBar';
 import Bookmarks from './Bookmarks';
 
 export default function App() {
@@ -18,11 +18,10 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="mvp">
       <Title />
-      click on a state to start
       {display()}
-      <BottomMenu handleClick={handleClick} />
+      <NavBar handleClick={handleClick} />
     </div>
   );
 }
