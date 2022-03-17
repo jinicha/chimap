@@ -4,18 +4,6 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import ShowResults from './modal/ShowResults';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '100%',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
 export default function Map() {
   const [click, setClick] = useState(false);
   const [stateName, setStateName] = useState('');
@@ -33,7 +21,7 @@ export default function Map() {
         open={click}
         onClose={closeModal}
       >
-        <Box id="modal-container" sx={style}>
+        <Box id="modal-container">
           <ShowResults closeModal={closeModal} stateName={stateName} />
         </Box>
       </Modal>
