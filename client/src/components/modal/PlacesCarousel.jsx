@@ -13,7 +13,6 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import IconButton from '@mui/material/IconButton';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 export default function PlacesCarousel({ places }) {
   // sort places by the product of rating and review_count in descending order
@@ -78,7 +77,6 @@ export default function PlacesCarousel({ places }) {
           {images[activeStep].rating}
         </Typography>
         <IconButton type="submit" onClick={bookmark}><BookmarksIcon /></IconButton>
-        <IconButton fontSize="small"><AddCircleRoundedIcon /></IconButton>
       </Paper>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}

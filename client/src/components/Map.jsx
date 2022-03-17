@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import USAMap from 'react-usa-map';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-
 import ShowResults from './modal/ShowResults';
-// import style from './modal/ShowResults.module'
 
 const style = {
   position: 'absolute',

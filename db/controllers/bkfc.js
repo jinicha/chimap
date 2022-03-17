@@ -15,7 +15,7 @@ const addToBookmark = (filter, data, cb) => {
     key: data.key,
     name: data.name,
     rating: data.rating,
-    img_url: data.img_url,
+    image_url: data.image_url,
     place_url: data.place_url,
     bookmark: 'y',
   }, { upsert: true })

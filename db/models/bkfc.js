@@ -4,7 +4,7 @@ const bkfcSchema = mongoose.Schema({
   key: String,
   name: String,
   rating: String,
-  img_url: String,
+  image_url: String,
   place_url: String,
   bookmark: String,
 });
