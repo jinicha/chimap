@@ -8,12 +8,18 @@ export default function Bookmarks() {
   const getBookmarks = () => {
     axios.get('/mvp/bookmarks')
       .then((results) => {
-        const temp = results.data.map((item) => item.image_url);
+        const temp = [];
+        results.data.forEach((item) => {
+          temp.push({
+            name: item.name,
+            image_url: item.image_url,
+          });
+        });
         setCards(temp);
         setBookmarks(results.data);
       })
       .catch((err) => {
-        console.log(err, 'err in BootomMenu getBookmarks');
+        console.log(err, 'err in axios.get("/mvp/bookmarks")');
       });
   };
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { useSprings, animated, to as interpolate } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
 
@@ -63,9 +64,11 @@ export default function Deck({ cards }) {
             {...bind(i)}
             style={{
               transform: interpolate([rot, scale], trans),
-              backgroundImage: `url(${cards[i]})`,
+              backgroundImage: `url(${cards[i].image_url})`,
             }}
-          />
+          >
+            {cards[i].name}
+          </animated.div>
         </animated.div>
       ))}
     </div>

@@ -8,21 +8,29 @@ import PlacesCarousel from './PlacesCarousel';
 export default function ShowResults({ closeModal, stateName }) {
   const [places, setPlaces] = useState([]);
 
-  // get results from yelp api
   const handleSubmit = (location) => {
-    const params = {
+    const data = {
       term: 'korean fried chicken',
       location,
       categories: 'Korean',
       limit: 5,
       sort_by: 'best_match',
     };
-    axios.get('/mvp/search', { params })
+    axios.post('/mvp/search', data)
       .then((results) => {
-        setPlaces(results.data.businesses);
+        const params = {
+          ids: results.data,
+        };
+        axios.get('/mvp/search', { params })
+          .then((resultsFromDb) => {
+            setPlaces(resultsFromDb.data);
+          })
+          .catch((err) => {
+            console.log(err, 'err in axiox.get("/mvp/search")');
+          });
       })
       .catch((err) => {
-        console.log(err, 'err in axiox.get("/mvp/search")');
+        console.log(err, 'err in axios.post("/mvp/search)');
       });
   };
 

@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const bkfcSchema = mongoose.Schema({
   key: String,
   name: String,
-  rating: String,
+  rating: Number,
+  review_count: Number,
   image_url: String,
   place_url: String,
   bookmark: String,

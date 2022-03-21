@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'underscore';
 import axios from 'axios';
@@ -15,31 +15,32 @@ import IconButton from '@mui/material/IconButton';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 
 export default function PlacesCarousel({ places }) {
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = useState(0);
+  const [saveBm, setSaveBm] = useState(false);
+
   // sort places by the product of rating and review_count in descending order
   const sort = _.sortBy(places, (item) => item.rating * item.review_count * -1);
 
   // create images array
   const images = [];
-  const ratingGenerator = (num) => {
-    if (num >= 2000) {
-      return 'Must Go';
-    }
-    return 'Recommend';
-  };
+  // const ratingGenerator = (num) => {
+  //   if (num >= 2000) {
+  //     return 'Must Go';
+  //   }
+  //   return 'Recommend';
+  // };
   sort.map((item) => {
     images.push({
       name: item.name,
-      rating: ratingGenerator(item.rating * item.review_count),
+      // rating: ratingGenerator(item.rating * item.review_count),
       image_url: item.image_url,
-      place_url: item.url,
-      key: item.id,
+      place_url: item.place_url,
+      key: item.key,
+      bookmark: item.bookmark,
     });
     return images;
   });
-
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -53,9 +54,10 @@ export default function PlacesCarousel({ places }) {
     setActiveStep(step);
   };
 
-  const bookmark = (e) => {
+  const saveBookmark = (e) => {
     e.preventDefault();
-    axios.post('/mvp/bookmarks', images[activeStep]);
+    setSaveBm(true);
+    axios.put('/mvp/bookmarks/save', images[activeStep]);
   };
 
   return (
@@ -72,12 +74,11 @@ export default function PlacesCarousel({ places }) {
           bgcolor: 'background.default',
         }}
       >
-        <Typography>
+        <Typography className="modal-places-title-name">
           <a href={images[activeStep].place_url}>{images[activeStep].name}</a>
-          {' '}
-          {images[activeStep].rating}
         </Typography>
-        <IconButton type="submit" onClick={bookmark}><BookmarksIcon /></IconButton>
+        {/* <Typography className="modal-places-title-rating">{images[activeStep].rating}</Typography> */}
+        <IconButton className="modal-places-title-bookmark" type="submit" onClick={saveBookmark}><BookmarksIcon /></IconButton>
       </Paper>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -105,14 +106,15 @@ export default function PlacesCarousel({ places }) {
         ))}
       </SwipeableViews>
       <MobileStepper
-        steps={maxSteps}
+        steps={images.length}
         position="static"
         activeStep={activeStep}
         nextButton={(
           <Button
+            id="modal-nav-btn"
             size="small"
             onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
+            disabled={activeStep === images.length - 1}
           >
             Next
             {theme.direction === 'rtl' ? (
@@ -123,7 +125,7 @@ export default function PlacesCarousel({ places }) {
           </Button>
       )}
         backButton={(
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button id="modal-nav-btn" size="small" onClick={handleBack} disabled={activeStep === 0}>
             {theme.direction === 'rtl' ? (
               <KeyboardArrowRight />
             ) : (

@@ -1,5 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+}
+
 #app{
-  margin: 40px auto 0;
+  margin: 20px auto 0;
   display: flex;
 }
 
@@ -7,6 +18,14 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+
+.app-cursor{
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  position: fixed;
+  background-image: url('chicken-leg.png');
 }
 
 .title{
@@ -27,6 +46,14 @@
   height: 540px;
 }
 
+path {
+  pointer-events: all;
+}
+path:hover {
+  opacity: 0.50;
+  cursor: pointer;
+}
+
 #modal-container{
   width: 40%;
   position: absolute;
@@ -42,6 +69,7 @@
 .modal{
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .modal-inner{
@@ -84,7 +112,12 @@
 
 #modal-places-title{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.modal-places-title-name a{
+  color: black;
 }
 
 .bookmark{
@@ -111,7 +144,7 @@
 
 .deck > div {
   background-color: white;
-  background-size: auto 85%;
+  background-size: auto 65%;
   background-repeat: no-repeat;
   background-position: center center;
   width: 45vh;
@@ -121,6 +154,13 @@
   will-change: transform;
   border-radius: 10px;
   box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
+  text-align: center;
+  padding-top: 20px;
+  font-size: 24px;
+}
+
+.remove-bookmark-btn{
+  margin-top: 500px;
 }
 
 #navbar{
@@ -128,4 +168,8 @@
   flex-direction: column;
   margin-top: 50px;
   width: 959px;
+}
+
+#nav-icon{
+  color: #dca416;
 }

@@ -3,6 +3,7 @@ import Title from './Title';
 import Map from './Map';
 import NavBar from './NavBar';
 import Bookmarks from './Bookmarks';
+import Cursor from './Cursor';
 
 export default function App() {
   const [page, setPage] = useState('map');
@@ -19,8 +20,11 @@ export default function App() {
 
   return (
     <div className="mvp">
+      <Cursor />
       <Title />
-      {display()}
+      <div className="main">
+        {display()}
+      </div>
       <NavBar handleClick={handleClick} />
     </div>
   );

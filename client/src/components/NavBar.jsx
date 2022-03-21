@@ -8,15 +8,25 @@ import BookmarksIcon from '@mui/icons-material/Bookmarks';
 
 export default function NavBar({ handleClick }) {
   const [value, setValue] = useState(0);
-
-  const getBookmarks = (e) => {
-    e.preventDefault();
-    handleClick('bookmarks');
-  };
+  const [clickMap, setClickMap] = useState(true);
+  const [clickBm, setClickBm] = useState(false);
 
   const getMap = (e) => {
+    if (!clickMap) {
+      setClickMap(true);
+      setClickBm(false);
+    }
     e.preventDefault();
     handleClick('map');
+  };
+
+  const getBookmarks = (e) => {
+    if (!clickBm) {
+      setClickBm(true);
+      setClickMap(false);
+    }
+    e.preventDefault();
+    handleClick('bookmarks');
   };
 
   return (
@@ -28,8 +38,8 @@ export default function NavBar({ handleClick }) {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction id="search-icon" label="Search" icon={<SearchRoundedIcon fontSize="medium" />} onClick={getMap} />
-        <BottomNavigationAction id="bookmark-icon" label="Bookmarks" icon={<BookmarksIcon fontSize="medium" />} onClick={getBookmarks} />
+        <BottomNavigationAction id={clickMap ? 'nav-icon' : ''} label="Search" icon={<SearchRoundedIcon fontSize="medium" />} onClick={getMap} />
+        <BottomNavigationAction id={clickBm ? 'nav-icon' : ''} label="Bookmarks" icon={<BookmarksIcon fontSize="medium" />} onClick={getBookmarks} />
       </BottomNavigation>
     </Box>
   );
